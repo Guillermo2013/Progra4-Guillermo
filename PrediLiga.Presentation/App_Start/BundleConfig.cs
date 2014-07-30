@@ -19,6 +19,8 @@ namespace App.PrediLiga.Presentation
             bundles.Add(new ScriptBundle("~/js/jquery").Include("~/scripts/vendor/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/js/app").Include(
+                "~/scripts/vendor/jquery-2.0.3.js",
+                "~/scripts/vendor/angular.js",
                 "~/scripts/vendor/angular-ui-router.js",
                 "~/scripts/filters.js",
                 "~/scripts/services.js",
