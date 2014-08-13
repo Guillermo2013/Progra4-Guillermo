@@ -28,6 +28,13 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                 templateUrl: '/views/login',
                 controller: 'LoginCtrl'
             })
+                //ESTADO DE RECUPERAR LA CLAVE
+           .state('ForgetPassword', {
+               url: '/forget-password',
+               layout: 'basic',
+               templateUrl: '/views/forget-password',
+               controller: 'ForgetPasswordCtrl'
+           })
             .state('otherwise', {
                 url: '*path',
                 templateUrl: '/views/404',

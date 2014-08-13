@@ -33,6 +33,16 @@ angular.module('app.controllers', [])
             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
         });
     }])
+         // Path: /forgot-password
+    .controller('ForgetPasswordCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
+        $scope.$root.title = 'AngularJS SPA | Recuperar password';
+        // TODO: Forget password
+        $scope.RecoverPassword = function () {
+            $scope.ShowMessage = true;
+            // $location.path('/RecoverPassword');
+            return false;
+        };
+    }])
 
     // Path: /error/404
     .controller('Error404Ctrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
