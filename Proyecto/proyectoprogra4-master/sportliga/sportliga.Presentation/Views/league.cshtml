@@ -1,0 +1,58 @@
+﻿<div class="panel-body">
+    <table class="table table-striped">
+        <thead>
+            <h1>Equipos</h1>
+            <tr>         
+                <th>
+                    <a href="" ng-click="ordenarPor('nombre')">
+                        Nombre/s
+                    </a>
+                    <span class="caret" style="cursor: pointer" ng-click="ordenarPor('-nombre')"></span>
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="team in teamsFiltre">
+                
+                <td>{{team.nombre}}</td>
+                <td>{{team.id_liga}}</td>
+                <td><button ng-click="DeleteTeam(team.nombre)">Delete</button></td>
+                <td><button ng-click="EditName(team.nombre)">Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row" ng-hide="isEditing">
+        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="NewTeam()">
+            <h2 class="text-center">New Team</h2>
+            <div class="form-box">
+            
+                <div class="form-group">
+                    <input ng-model="NombreDeEquipo" type="text" class="form-control" placeholder="Nombre de Equipo" required />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit" ng-disabled="!(NombreDeEquipo)" disabled>Add Team</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row" ng-show ="isEditing">
+        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="FinishEditing()">
+            <h2 class="text-center">Edit Team</h2>
+            <div class="form-box">
+
+                <div class="form-group">
+                    <input ng-model="NuevoNombre" type="text" class="form-control" placeholder="Nombre de Equipo" required />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit" >Edit Team</button>
+                    <button class="btn btn-primary btn-block" type="button" ng-click="EditName()" >Cancel</button>
+                        
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

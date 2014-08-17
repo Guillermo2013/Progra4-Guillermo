@@ -1,0 +1,49 @@
+﻿
+<table class="table table-striped">
+    <h1>ligas Inscripto</h1>
+    <thead>
+        <tr>
+            <th>Nombre de Liga</th>
+            <th>Fecha inicio de suscripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="ligaCliente in ligasCliente">
+            <td><a class="btn-link" href="/league/{{ligaCliente.idLiga}}">{{ligaCliente.nombreDeLiga| uppercase}}</a></td>
+            <td>{{ligaCliente.fechaInicio | date:'fullDate' }}</td>
+        </tr>
+    </tbody>
+</table>
+<form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+    <div class="form-group">
+        <button class="btn btn-primary btn-block" type="button" ng-click="buscar()">Buscar Ligas Para Suscribir</button>     
+       
+    </div>
+</form>
+<div class="row" ng-hide="hide">
+    <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th>Liga</th>
+                  <th>País</th>
+                  <th>Fecha inicio</th>
+                  <th>Fecha finalizacion</th>
+                  <th>Total de equipos</th>
+                  <th>Accciones</th>
+              </tr>
+        </thead>
+        <tbody>
+           
+            <tr ng-repeat="liga in ligasParaIncribirse">
+                <td><a class="btn-link" href="/league/{{liga.id}}">{{liga.nombre}}</a></td>
+                <td>{{liga.pais | uppercase}}</td>
+                <td>{{liga.inicio | date:'fullDate'}}</td>
+                <td>{{liga.fin | date:'fullDate'}} </td>
+                <td>{{liga.cant_equipos}}</td>
+                <td><button ng-click="suscibirse(liga.nombre)">Suscribirse</button></td>
+            </tr>
+           
+        </tbody>
+    </table>
+   
+</div>
