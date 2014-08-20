@@ -1,0 +1,65 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <h1>Partidos De Liga </h1>
+                <tr>
+
+                    <th>Local</th>
+                    <th>Visitante</th>
+                    <th>Goles de Local</th>
+                    <th>Goles de Visitante </th>
+                    <th>Actions</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="team in partidosJugadosFilter">
+
+                    <td>{{team.equipo_uno}}</td>
+                    <td>{{team.equipo_dos}}</td>
+                    <td>{{team.goles_uno}}</td>
+                    <td>{{team.goles_dos}}</td>
+                    <td>
+                        <button ng-click="PredecirPartido(team.equipo_uno,team.equipo_dos)">Predecir</button>
+                       
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="row" ng-show="PredecirBool">
+            <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <h2 class="text-center">Predecir Resultado</h2>
+                <div class="form-box">
+
+                    <div class="form-group">
+                        <input ng-model="Goles1" type="text" class="form-control" placeholder="Goles de Equipo local" required />
+                    </div>
+                    <div class="form-group">
+                        <input ng-model="Goles2" type="text" class="form-control" placeholder="Goles de Equipo Visitante" required />
+                    </div>
+
+                    <div class="form-group">
+
+                        <button class="btn btn-primary btn-block" type="button" ng-click="Predecir()">Aceptar Prediccion</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

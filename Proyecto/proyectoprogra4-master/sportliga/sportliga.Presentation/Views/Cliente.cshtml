@@ -9,7 +9,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="ligaCliente in ligasCliente">
-            <td><a class="btn-link" href="/league/{{ligaCliente.idLiga}}">{{ligaCliente.nombreDeLiga| uppercase}}</a></td>
+            <td><a class="btn-link" href="/CLeague/{{ligaCliente.idLiga}}">{{ligaCliente.nombreDeLiga| uppercase}}</a></td>
             <td>{{ligaCliente.fechaInicio | date:'fullDate' }}</td>
         </tr>
     </tbody>
@@ -35,7 +35,7 @@
         <tbody>
            
             <tr ng-repeat="liga in ligasParaIncribirse">
-                <td><a class="btn-link" href="/league/{{liga.id}}">{{liga.nombre}}</a></td>
+                <td><a class="btn-link" href="/CLeague/{{liga.id}}">{{liga.nombre}}</a></td>
                 <td>{{liga.pais | uppercase}}</td>
                 <td>{{liga.inicio | date:'fullDate'}}</td>
                 <td>{{liga.fin | date:'fullDate'}} </td>
@@ -45,5 +45,9 @@
            
         </tbody>
     </table>
-   
+        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" type="button" ng-click="FinalizarBusqueda()">Finalizar Busquedad De Nuevas Ligas</button>
+        </div>
+        </form>
 </div>

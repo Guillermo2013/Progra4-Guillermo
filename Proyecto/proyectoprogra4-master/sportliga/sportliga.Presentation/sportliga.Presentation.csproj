@@ -498,9 +498,10 @@
     <Content Include="Views\Register.cshtml" />
     <Content Include="Views\forgot-password.cshtml" />
     <Content Include="Views\profile.cshtml" />
-    <Content Include="Views\team.cshtml" />
     <Content Include="Views\league.cshtml" />
     <Content Include="Views\Cliente.cshtml" />
+    <Content Include="Views\CLeague.cshtml" />
+    <Content Include="Views\ADPartidos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

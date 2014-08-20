@@ -1,5 +1,4 @@
-﻿
-           
+﻿           
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="input-group">
@@ -32,7 +31,9 @@
                     <td>{{liga.inicio | date:'fullDate'}}</td>
                     <td>{{liga.fin | date:'fullDate'}} </td>
                     <td>{{liga.cant_equipos}}</td>
-                    <td><button ng-click="DeleteLiga(liga.nombre)">Delete</button></td>
+                    <td><button ng-click="DeleteLiga(liga.nombre)">Delete</button>
+                        <button ng-click="EditarLiga(liga.nombre)">Editar Liga</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -57,3 +58,24 @@
         </div>
     </form>
 </div>
+<div class="row" ng-show="Editar">
+    <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+        <h2 class="text-center">Editar</h2>
+        <div class="form-box">
+            <div class="form-group">
+                <input ng-model="nombreLigae" type="text" class="form-control" placeholder="Nombre de Liga" required autofocus />
+            </div>
+            <div class="form-group">
+                <input ng-model="nombreDePaise" type="text" class="form-control" placeholder="Nombre de Pais" required />
+            </div>
+            <div class="form-group">
+                <input ng-model="cantidadDEequipose" type="text" class="form-control" placeholder="Cantidad de Equipos" required />
+            </div>
+  
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="button" ng-click="AceptarEdicion(nombreLigae, nombreDePaise, cantidadDEequipose)">Editar Liga</button>
+            </div>
+        </div>
+    </form>
+</div>
+

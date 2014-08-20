@@ -11,7 +11,7 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
         // ------------------------------------------------------------------------------------------------------------
 
         $stateProvider
-            .state('home', {
+            .state('home', {    
                 url: '/',
                 templateUrl: '/views/index',
                 controller: 'HomeCtrl'
@@ -71,8 +71,21 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                layout: 'basic',
                templateUrl: '/views/Cliente',
                controller: 'ClienteCtrl'
-           })
-                
+          })
+            //Accerder a la ligas del Cliente
+            .state('CLeague', {
+                url: '/CLeague/:id',
+                layout: 'basic',
+                templateUrl: '/views/CLeague',
+                controller: 'CLeagueCtrl'
+            })
+            //Accerder a los partidos ad
+            .state('ADPartidos', {
+                url: '/ADPartidos/:id',
+                layout: 'basic',
+                templateUrl: '/views/ADPartidos',
+                controller: 'ADPartidosCtrl'
+            })
          .state('otherwise', {
              url: '*path',
              templateUrl: '/views/404',
