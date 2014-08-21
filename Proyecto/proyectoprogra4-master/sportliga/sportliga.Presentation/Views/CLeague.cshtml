@@ -40,20 +40,23 @@
         </table>
         
         <div class="row" ng-show="PredecirBool">
-            <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="Predecir()">
                 <h2 class="text-center">Predecir Resultado</h2>
                 <div class="form-box">
 
                     <div class="form-group">
-                        <input ng-model="Goles1" type="text" class="form-control" placeholder="Goles de Equipo local" required />
+                        <label>{{equipo1}}</label>
+                        <input ng-model="Goles1" type="number" class="form-control" placeholder="Goles de Equipo local" required />
                     </div>
+
                     <div class="form-group">
-                        <input ng-model="Goles2" type="text" class="form-control" placeholder="Goles de Equipo Visitante" required />
+                        <label>{{equipo2}}</label>
+                        <input ng-model="Goles2" type="number" class="form-control" placeholder="Goles de Equipo Visitante" required />
                     </div>
 
                     <div class="form-group">
 
-                        <button class="btn btn-primary btn-block" type="button" ng-click="Predecir()">Aceptar Prediccion</button>
+                        <button class="btn btn-primary btn-block" type="submit" >Aceptar Prediccion</button>
 
                     </div>
                 </div>

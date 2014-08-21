@@ -41,19 +41,19 @@
         <div class="form-box">
 
             <div class="form-group">
-                <input ng-model="NuevoNombre" type="text" class="form-control" placeholder="Nombre de Equipo" required />
+                <input ng-model="NuevoNombre" type="text" class="form-control" placeholder="Nombre de Equipo" autofocus />
             </div>
             <div class="form-group">
-                <input ng-model="partidosJugados" type="text" class="form-control" placeholder="Partidos Jugados" required />
+                <input ng-model="partidosJugados" type="number" class="form-control" placeholder="Partidos Jugados" autofocus />
             </div>
             <div class="form-group">
-                <input ng-model="partidosGanados" type="text" class="form-control" placeholder="Partidos Ganados" required />
+                <input ng-model="partidosGanados" type="number" class="form-control" placeholder="Partidos Ganados" autofocus />
             </div>
             <div class="form-group">
-                <input ng-model="partidosPerdidos" type="text" class="form-control" placeholder="Partidos Perdidos" required />
+                <input ng-model="partidosPerdidos" type="number" class="form-control" placeholder="Partidos Perdidos" autofocus />
             </div>
             <div class="form-group">
-                <input ng-model="goles" type="text" class="form-control" placeholder="Goles en la Liga" required />
+                <input ng-model="goles" type="number" class="form-control" placeholder="Goles en la Liga" autofocus />
             </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit" ng-disabled="!(NuevoNombre)" disabled>Add Team</button>
@@ -71,13 +71,13 @@
                 <input ng-model="NuevoNombre" type="text" class="form-control" placeholder="Nombre de Equipo" required />
             </div>
             <div class="form-group">
-                <input ng-model="partidosJugados" type="text" class="form-control" placeholder="Partidos Jugados" required />
+                <input ng-model="partidosJugados" type="number" class="form-control" placeholder="Partidos Jugados" required />
             </div>
             <div class="form-group">
-                <input ng-model="partidosGanados" type="text" class="form-control" placeholder="Partidos Ganados" required />
+                <input ng-model="partidosGanados" type="number" class="form-control" placeholder="Partidos Ganados" required />
             </div>
             <div class="form-group">
-                <input ng-model="partidosPerdidos" type="text" class="form-control" placeholder="Partidos Perdidos" required />
+                <input ng-model="partidosPerdidos" type="number" class="form-control" placeholder="Partidos Perdidos" required />
             </div>
             <div class="form-group">
                 <input ng-model="goles" type="text" class="form-control" placeholder="Goles en la Liga" required />
@@ -85,7 +85,7 @@
 
             <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit">Edit Team</button>
-                <button class="btn btn-primary btn-block" type="button" ng-click="cancelarEdit()">Cancel</button>
+                <button class="btn btn-primary btn-block" type="button" ng-click="cancelarEdit()" >Cancel</button>
 
             </div>
         </div>

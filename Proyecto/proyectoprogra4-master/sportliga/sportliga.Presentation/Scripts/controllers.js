@@ -44,6 +44,7 @@ angular.module('app.controllers', [])
                 $location.path('/register');
                 return false;
             };
+            $scope.ShowMessage = false;
             $scope.Cuentas = function(userName, password) {
                 $scope.user = userName;
                 $scope.password = password;
@@ -53,10 +54,8 @@ angular.module('app.controllers', [])
                 } else if ($scope.user === "cliente" && $scope.password === "guillermo") {
                     $location.path('/Cliente');
                 } else {
-                    $location.path('/login');
-                    
+                    $scope.ShowMessage = true;
                 }
-
             };
 
 
@@ -94,46 +93,11 @@ angular.module('app.controllers', [])
             $scope.$root.title = 'AngularJS SPA | Mi perfil';
             // TODO: Forgot password
             $scope.ligas = [
-                {
-                    nombre: 'Española',
-                    pais: 'España',
-                    inicio: new Date(),
-                    fin: new Date(),
-                    cant_equipos: 20,
-                    id: 1
-                },
-                {
-                    nombre: 'Italiana',
-                    pais: 'Italia',
-                    inicio: new Date(),
-                    fin: new Date(),
-                    cant_equipos: 21,
-                    id: 2
-                },
-                {
-                    nombre: 'Inglesa',
-                    pais: 'Ingaltera',
-                    inicio: new Date(),
-                    fin: new Date(),
-                    cant_equipos: 15,
-                    id: 3
-                },
-                {
-                    nombre: 'Francesa',
-                    pais: 'Francia',
-                    inicio: new Date(),
-                    fin: new Date(),
-                    cant_equipos: 21,
-                    id: 4
-                },
-                {
-                    nombre: 'China',
-                    pais: 'China',
-                    inicio: new Date(),
-                    fin: new Date(),
-                    cant_equipos: 15,
-                    id: 5
-                }
+                { nombre: 'Española', pais: 'España',inicio: new Date(),fin: new Date(),cant_equipos: 20,id: 1},
+                { nombre: 'Italiana',pais: 'Italia',inicio: new Date(),fin: new Date(),cant_equipos: 21,id: 2},
+                { nombre: 'Inglesa',pais: 'Ingaltera',inicio: new Date(),fin: new Date(),cant_equipos: 15,id: 3},
+                { nombre: 'Francesa',pais: 'Francia',inicio: new Date(),fin: new Date(),cant_equipos: 21,id: 4},
+                { nombre: 'China',pais: 'China',inicio: new Date(),fin: new Date(),cant_equipos: 15,id: 5}
             ];
 
             $scope.ordenarPor = function(orden) {
@@ -146,8 +110,8 @@ angular.module('app.controllers', [])
                 $scope.ligas.push({
                     nombre: nombreLiga,
                     pais: nombreDePais,
-                    inicio: new Date(),
-                    fin: new Date,
+                    inicio: $scope.FechaInicio,
+                    fin: $scope.FechaFinal,
                     cant_equipos: parseInt(cantidadDEequipo),
                     id: parseInt($scope.ligas.length+1)
                 });
@@ -169,18 +133,20 @@ angular.module('app.controllers', [])
                 nombre: '',
                 pais: '',
                 inicio: new Date(),
-                fin: new Date,
+                fin: new Date(),
                 cant_equipos: 0,
                 id: 0
             }];
             $scope.EditarLiga = function (ligaName) {
-                $scope.AgregarLigabool = !$scope.AgregarLigabool;
-                $scope.Editar = !$scope.Editar;
+                $scope.AgregarLigabool = false;
+                $scope.Editar = true;
                 for (var i = 0;i<$scope.ligas.length;i++) {
                     if ($scope.ligas[i].nombre === ligaName) {
                         $scope.AntesDeEditar[0] = $scope.ligas[i];
                         $scope.nombreLigae = $scope.ligas[i].nombre;
                         $scope.nombreDePaise = $scope.ligas[i].pais;
+                        $scope.EditarFechaInicio = $scope.ligas[i].inicio;
+                        $scope.EditarFechaFinal = $scope.ligas[i].fin;
                         $scope.cantidadDEequipose = $scope.ligas[i].cant_equipos;
                     }
                 }
@@ -191,12 +157,15 @@ angular.module('app.controllers', [])
                     if ($scope.ligas[i].nombre===$scope.AntesDeEditar[0].nombre) {
                         $scope.ligas[i].nombre = nombreLigae;
                         $scope.ligas[i].pais = nombreDePaise;
+                        $scope.ligas[i].inicio= $scope.EditarFechaInicio ;
+                        $scope.ligas[i].fin = $scope.EditarFechaFinal ;
                         $scope.ligas[i].cant_equipos = parseInt(cantidadDEequipose);
                     }
                 }
                
-                $scope.AgregarLigabool = !$scope.AgregarLigabool;
-                $scope.Editar = !$scope.Editar;
+                $scope.AgregarLigabool = true;
+                $scope.Editar = false;
+                
                 
             };
 
@@ -489,20 +458,20 @@ angular.module('app.controllers', [])
         };
         */
             $scope.PartidosDeLeague = [
-                { id_league: 1, equipo_uno: "Levante", equipo_dos: "Barcelona", goles_uno: 0, goles_dos: 0, },
-                { id_league: 1, equipo_uno: "Barcelona", equipo_dos: "Levante", goles_uno: 0, goles_dos: 0, },
-                { id_league: 1, equipo_uno: "Madrid", equipo_dos: "Barcelona", goles_uno: 0, goles_dos: 0, },
-                { id_league: 2, equipo_uno: "Liverpool", equipo_dos: "Manchester", goles_uno: 0, goles_dos: 0, },
-                { id_league: 2, equipo_uno: "Manchester", equipo_dos: "Liverpool", goles_uno: 0, goles_dos: 0, },
-                { id_league: 2, equipo_uno: "Liverpool", equipo_dos: "Chelsea", goles_uno: 0, goles_dos: 0, },
-                { id_league: 3, equipo_uno: "Genova", equipo_dos: "Cagliari", goles_uno: 0, goles_dos: 0, },
-                { id_league: 3, equipo_uno: "Cagliari", equipo_dos: "Genova", goles_uno: 0, goles_dos: 0, },
-                { id_league: 3, equipo_uno: "Inter", equipo_dos: "Genova", goles_uno: 0, goles_dos: 0, },
-                { id_league: 4, equipo_uno: "Monaco", equipo_dos: "Paris", goles_uno: 0, goles_dos: 0, },
-                { id_league: 4, equipo_uno: "Paris", equipo_dos: "Monaco", goles_uno: 0, goles_dos: 0, },
-                { id_league: 4, equipo_uno: "France", equipo_dos: "Monaco", goles_uno: 0, goles_dos: 0, },
-                { id_league: 5, equipo_uno: "Shangai", equipo_dos: "Sheck", goles_uno: 0, goles_dos: 0, },
-                { id_league: 5, equipo_uno: "Sheck", equipo_dos: "Shangai", goles_uno: 0, goles_dos: 0, },
+                { id_league: 1, equipo_uno: "Levante", equipo_dos: "Barcelona", goles_uno: 0, goles_dos: 0, fecha:new Date()},
+                { id_league: 1, equipo_uno: "Barcelona", equipo_dos: "Levante", goles_uno: 0, goles_dos: 0, fecha: new Date() },
+                { id_league: 1, equipo_uno: "Madrid", equipo_dos: "Barcelona", goles_uno: 0, goles_dos: 0, fecha: new Date() },
+                { id_league: 2, equipo_uno: "Liverpool", equipo_dos: "Manchester", goles_uno: 0, goles_dos: 0, fecha: new Date() },
+                { id_league: 2, equipo_uno: "Manchester", equipo_dos: "Liverpool", goles_uno: 0, goles_dos: 0, fecha: new Date() },
+                { id_league: 2, equipo_uno: "Liverpool", equipo_dos: "Chelsea", goles_uno: 0, goles_dos: 0, fecha: new Date() },
+                { id_league: 3, equipo_uno: "Genova", equipo_dos: "Cagliari", goles_uno: 0, goles_dos: 0, fecha: new Date() },
+                { id_league: 3, equipo_uno: "Cagliari", equipo_dos: "Genova", goles_uno: 0, goles_dos: 0, fecha: new Date() },
+                { id_league: 3, equipo_uno: "Inter", equipo_dos: "Genova", goles_uno: 0, goles_dos: 0, fecha: new Date() },
+                { id_league: 4, equipo_uno: "Monaco", equipo_dos: "Paris", goles_uno: 0, goles_dos: 0, fecha: new Date() },
+                { id_league: 4, equipo_uno: "Paris", equipo_dos: "Monaco", goles_uno: 0, goles_dos: 0, fecha: new Date() },
+                { id_league: 4, equipo_uno: "France", equipo_dos: "Monaco", goles_uno: 0, goles_dos: 0, fecha: new Date() },
+                { id_league: 5, equipo_uno: "Shangai", equipo_dos: "Sheck", goles_uno: 0, goles_dos: 0, fecha: new Date() },
+                { id_league: 5, equipo_uno: "Sheck", equipo_dos: "Shangai", goles_uno: 0, goles_dos: 0, fecha: new Date() },
                { id_league: 5, equipo_uno: "Chou", equipo_dos: "Sheck", goles_uno: 0, goles_dos: 0, }
             ];
             $scope.partidosJugadosFilter = [];
@@ -548,21 +517,24 @@ angular.module('app.controllers', [])
                     equipo_dos: $scope.Equipo_2,
                     goles_uno: 0,
                     goles_dos: 0,
+                    fecha:$scope.Fecha
                 });
                 $scope.Equipo_1 = "";
                 $scope.Equipo_2 = "";
             }
             $scope.temporaNombreE1 = "";
             $scope.temporaNombreE2 = "";
-            $scope.EditPartido = function(equipo_uno, equipo_dos,goles_uno,goles_dos) {
+            $scope.EditPartido = function(equipo_uno, equipo_dos,goles_uno,goles_dos,fecha) {
                 $scope.NuevoPartido = false;
                 $scope.EditarBool = true;
+                $scope.PredecirBool = false;
                 $scope.NuevoEquipo1 = equipo_uno;
                 $scope.NuevoEquipo2 = equipo_dos;
                 $scope.temporaNombreE1 = equipo_uno;
                 $scope.temporaNombreE2 =  equipo_dos;
                 $scope.NuevoEquipoGoles1 = goles_uno;
                 $scope.NuevoEquipoGoles2 = goles_dos;
+                $scope.NuevaFecha = new Date(fecha);
 
             };
             $scope.AceptarEdicion = function() {
@@ -572,6 +544,7 @@ angular.module('app.controllers', [])
                         $scope.partidosJugadosFilter[i].equipo_dos = $scope.NuevoEquipo2;
                         $scope.partidosJugadosFilter[i].goles_uno = parseInt($scope.NuevoEquipoGoles1);
                         $scope.partidosJugadosFilter[i].goles_dos = parseInt($scope.NuevoEquipoGoles2);
+                        $scope.partidosJugadosFilter[i].fecha = $scope.NuevaFecha;
                     }
                     
                 }
@@ -583,6 +556,7 @@ angular.module('app.controllers', [])
                 $scope.temporaNombreE2 = "";
                 $scope.NuevoEquipoGoles1 = "";
                 $scope.NuevoEquipoGoles2 = "";
+                $scope.NuevaFecha = new Date();
             };
             $scope.DeletePartido=function(equipo_uno, equipo_dos) {
                 for (var i = 0; i < $scope.partidosJugadosFilter.length; i++) {
