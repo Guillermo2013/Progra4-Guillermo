@@ -106,7 +106,7 @@ angular.module('app.controllers', [])
             $scope.AgregarLigabool = true;
             $scope.Editar = false;
             $scope.AgregarLiga = function (nombreLiga, nombreDePais, cantidadDEequipo) {
-                if (parseInt(nombreLiga) >0 && parseInt(nombreDePais) > 0) {
+                if (parseInt(nombreLiga) >0 || parseInt(nombreDePais) > 0) {
                  $scope.nombreLiga = "";
                     $scope.nombreDePais = "";
                     $scope.MasQueNumero = true;
@@ -160,7 +160,7 @@ angular.module('app.controllers', [])
                 }
             };
             $scope.AceptarEdicion = function (nombreLigae, nombreDePaise, cantidadDEequipose) {
-                if (parseInt(nombreLigae) > 0 && parseInt(nombreDePaise) > 0) {
+                if (parseInt(nombreLigae) > 0 || parseInt(nombreDePaise) > 0) {
                     $scope.nombreLigae = "";
                     $scope.nombreDePaise = "";
                     $scope.MasQueNumero = true;
@@ -536,7 +536,7 @@ angular.module('app.controllers', [])
                 $scope.NuevoPartido = true;
             };
             $scope.AgregarPartido=function() {
-                if (parseInt($scope.Equipo_1) > 0 && parseInt($scope.Equipo_2) > 0) {
+                if (parseInt($scope.Equipo_1) > 0 || parseInt($scope.Equipo_2) > 0) {
                     $scope.Equipo_1 = "";
                     $scope.Equipo_2 = "";
                     $scope.MasQueNumero = true;
@@ -552,6 +552,7 @@ angular.module('app.controllers', [])
                     $scope.Equipo_1 = "";
                     $scope.Equipo_2 = "";
                     $scope.MasQueNumero = false;
+                    $scope.Fecha = new Date();
                 }
               }
             $scope.temporaNombreE1 = "";
@@ -566,11 +567,11 @@ angular.module('app.controllers', [])
                 $scope.temporaNombreE2 =  equipo_dos;
                 $scope.NuevoEquipoGoles1 = goles_uno;
                 $scope.NuevoEquipoGoles2 = goles_dos;
-                $scope.NuevaFecha = new Date(fecha);
+                $scope.NuevaFecha = new Date();
 
             };
             $scope.AceptarEdicion = function() {
-                if (parseInt($scope.NuevoEquipo1) > 0 && parseInt($scope.NuevoEquipo2) > 0) {
+                if (parseInt($scope.NuevoEquipo1) > 0 || parseInt($scope.NuevoEquipo2) > 0) {
                     $scope.NuevoEquipo1 = "";
                     $scope.NuevoEquipo2 = "";
                     $scope.MasQueNumero = true;
