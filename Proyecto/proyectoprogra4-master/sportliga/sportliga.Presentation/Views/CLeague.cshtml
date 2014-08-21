@@ -10,6 +10,9 @@
     <title></title>
 </head>
 <body>
+    <div class="form-group">
+        <a class="btn btn-primary btn-block" href="/Cliente">REGRESAR A LAS LIGAS</a>
+    </div>
     <div>
         <table class="table table-striped">
             <thead>
@@ -17,9 +20,9 @@
                 <tr>
 
                     <th>Local</th>
-                    <th>Visitante</th>
                     <th>Goles de Local</th>
                     <th>Goles de Visitante </th>
+                    <th>Visitante</th>
                     <th>Actions</th>
 
                 </tr>
@@ -28,9 +31,9 @@
                 <tr ng-repeat="team in partidosJugadosFilter">
 
                     <td>{{team.equipo_uno}}</td>
-                    <td>{{team.equipo_dos}}</td>
-                    <td>{{team.goles_uno}}</td>
+                   <td>{{team.goles_uno}}</td>
                     <td>{{team.goles_dos}}</td>
+                    <td>{{team.equipo_dos}}</td>
                     <td>
                         <button ng-click="PredecirPartido(team.equipo_uno,team.equipo_dos)">Predecir</button>
                        
