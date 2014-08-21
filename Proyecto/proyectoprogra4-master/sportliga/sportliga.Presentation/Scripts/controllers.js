@@ -106,20 +106,28 @@ angular.module('app.controllers', [])
             $scope.AgregarLigabool = true;
             $scope.Editar = false;
             $scope.AgregarLiga = function (nombreLiga, nombreDePais, cantidadDEequipo) {
-               
-                $scope.ligas.push({
-                    nombre: nombreLiga,
-                    pais: nombreDePais,
-                    inicio: $scope.FechaInicio,
-                    fin: $scope.FechaFinal,
-                    cant_equipos: parseInt(cantidadDEequipo),
-                    id: parseInt($scope.ligas.length+1)
-                });
-                $scope.nombreLiga = " ";
-                $scope.nombreDePais = " ";
-                $scope.cantidadDEequipos = " " ;
-
+                if (parseInt(nombreLiga) >0 && parseInt(nombreDePais) > 0) {
+                 $scope.nombreLiga = "";
+                    $scope.nombreDePais = "";
+                    $scope.MasQueNumero = true;
+                } else {
+                    $scope.ligas.push({
+                        nombre: nombreLiga,
+                        pais: nombreDePais,
+                        inicio: $scope.FechaInicio,
+                        fin: $scope.FechaFinal,
+                        cant_equipos: parseInt(cantidadDEequipo),
+                        id: parseInt($scope.ligas.length + 1)
+                    });
+                    $scope.nombreLiga = "";
+                    $scope.nombreDePais = "";
+                    $scope.FechaInicio = new Date();
+                    $scope.FechaFinal = new Date();
+                    $scope.cantidadDEequipo = null;
+                    $scope.MasQueNumero = false;
+                }
             };
+            
             $scope.DeleteLiga = function (nombre) {
                 for (var i = 0; i < $scope.ligas.length; i++) {
                     if ($scope.ligas[i].nombre === nombre) {
@@ -152,21 +160,26 @@ angular.module('app.controllers', [])
                 }
             };
             $scope.AceptarEdicion = function (nombreLigae, nombreDePaise, cantidadDEequipose) {
-                
-                for (var i = 0; i < $scope.ligas.length; i++) {
-                    if ($scope.ligas[i].nombre===$scope.AntesDeEditar[0].nombre) {
-                        $scope.ligas[i].nombre = nombreLigae;
-                        $scope.ligas[i].pais = nombreDePaise;
-                        $scope.ligas[i].inicio= $scope.EditarFechaInicio ;
-                        $scope.ligas[i].fin = $scope.EditarFechaFinal ;
-                        $scope.ligas[i].cant_equipos = parseInt(cantidadDEequipose);
+                if (parseInt(nombreLigae) > 0 && parseInt(nombreDePaise) > 0) {
+                    $scope.nombreLigae = "";
+                    $scope.nombreDePaise = "";
+                    $scope.MasQueNumero = true;
+                } else {
+                    for (var i = 0; i < $scope.ligas.length; i++) {
+                        if ($scope.ligas[i].nombre === $scope.AntesDeEditar[0].nombre) {
+                            $scope.ligas[i].nombre = nombreLigae;
+                            $scope.ligas[i].pais = nombreDePaise;
+                            $scope.ligas[i].inicio = $scope.EditarFechaInicio;
+                            $scope.ligas[i].fin = $scope.EditarFechaFinal;
+                            $scope.ligas[i].cant_equipos = parseInt(cantidadDEequipose);
+                        }
                     }
+
+                    $scope.AgregarLigabool = true;
+                    $scope.Editar = false;
+                    $scope.MasQueNumero = false;
+
                 }
-               
-                $scope.AgregarLigabool = true;
-                $scope.Editar = false;
-                
-                
             };
 
         }
@@ -218,23 +231,29 @@ angular.module('app.controllers', [])
 
             inicio();
             $scope.NewTeam = function () {
-                var team = [
-                {
-                    nombre: $scope.NuevoNombre,
-                    id_liga: parseInt($stateParams.id),
-                    partidosJugados: parseInt($scope.partidosJugados),
-                    partidosGanados: parseInt($scope.partidosGanados),
-                    partidosPerdidos: parseInt($scope.partidosPerdidos),
-                    goles: parseInt($scope.goles)
+                if (parseInt($scope.NuevoNombre) > 0) {
+                    $scope.NuevoNombre = "";
+                    $scope.MasQueNumero = true;
+                } else {
+                    var team = [
+                    {
+                        nombre: $scope.NuevoNombre,
+                        id_liga: parseInt($stateParams.id),
+                        partidosJugados: parseInt($scope.partidosJugados),
+                        partidosGanados: parseInt($scope.partidosGanados),
+                        partidosPerdidos: parseInt($scope.partidosPerdidos),
+                        goles: parseInt($scope.goles)
+                    }
+                    ];
+                    $scope.teams.push(team[0]);
+                    inicio();
+                    $scope.NuevoNombre = "";
+                    $scope.partidosJugados = "";
+                    $scope.partidosGanados = "";
+                    $scope.partidosPerdidos = "";
+                    $scope.goles = "";
+                    $scope.MasQueNumero = false;    
                 }
-                ];
-                $scope.teams.push(team[0]);
-                inicio();
-                $scope.NuevoNombre = "";
-                $scope.partidosJugados = "";
-                $scope.partidosGanados = "";
-                $scope.partidosPerdidos = "";
-                $scope.goles = "";
             };
             $scope.DeleteTeam = function(nombre) {
                 for (var i = 0; i < $scope.teams.length; i++) {
@@ -277,25 +296,30 @@ angular.module('app.controllers', [])
             $scope.NombreDeEquipo = "";
            
             $scope.FinishEditing = function() {
-                $scope.isEditing = false;
-                for (var i = 0; i < $scope.teams.length; i++) {
-                    if ($scope.teams[i].nombre === $scope.NombreAbuscar) {
-                        $scope.teams[i].nombre = $scope.NuevoNombre;
-                        $scope.teams[i].partidosJugados = parseInt($scope.partidosJugados);
-                        $scope.teams[i].partidosGanados = parseInt($scope.partidosGanados);
-                        $scope.teams[i].partidosPerdidos = parseInt($scope.partidosPerdidos);
-                        $scope.teams[i].goles = parseInt($scope.goles);
+                if (parseInt($scope.NuevoNombre) > 0) {
+                   $scope.NuevoNombre = "";
+                    $scope.MasQueNumero = true;
+                } else {
+                    $scope.isEditing = false;
+                    for (var i = 0; i < $scope.teams.length; i++) {
+                        if ($scope.teams[i].nombre === $scope.NombreAbuscar) {
+                            $scope.teams[i].nombre = $scope.NuevoNombre;
+                            $scope.teams[i].partidosJugados = parseInt($scope.partidosJugados);
+                            $scope.teams[i].partidosGanados = parseInt($scope.partidosGanados);
+                            $scope.teams[i].partidosPerdidos = parseInt($scope.partidosPerdidos);
+                            $scope.teams[i].goles = parseInt($scope.goles);
+                        }
+
                     }
 
+                    inicio();
+                    $scope.NuevoNombre = "";
+                    $scope.partidosJugados = "";
+                    $scope.partidosGanados = "";
+                    $scope.partidosPerdidos = "";
+                    $scope.goles = "";
+                    $scope.MasQueNumero = false;
                 }
-              
-                inicio();
-                $scope.NuevoNombre = "";
-                $scope.partidosJugados = "";
-                $scope.partidosGanados = "";
-                $scope.partidosPerdidos = "";
-                $scope.goles = "";
-
             }
             $scope.cancelarEdit=function()
             {
@@ -305,6 +329,7 @@ angular.module('app.controllers', [])
                 $scope.partidosPerdidos = "";
                 $scope.goles = "";
                 $scope.isEditing = !$scope.isEditing;
+                $scope.MasQueNumero = false;
             };
 
         }
@@ -511,17 +536,24 @@ angular.module('app.controllers', [])
                 $scope.NuevoPartido = true;
             };
             $scope.AgregarPartido=function() {
-                $scope.partidosJugadosFilter.push({
-                    id_league: parseInt($stateParams.id),
-                    equipo_uno: $scope.Equipo_1,
-                    equipo_dos: $scope.Equipo_2,
-                    goles_uno: 0,
-                    goles_dos: 0,
-                    fecha:$scope.Fecha
-                });
-                $scope.Equipo_1 = "";
-                $scope.Equipo_2 = "";
-            }
+                if (parseInt($scope.Equipo_1) > 0 && parseInt($scope.Equipo_2) > 0) {
+                    $scope.Equipo_1 = "";
+                    $scope.Equipo_2 = "";
+                    $scope.MasQueNumero = true;
+                } else {
+                    $scope.partidosJugadosFilter.push({
+                        id_league: parseInt($stateParams.id),
+                        equipo_uno: $scope.Equipo_1,
+                        equipo_dos: $scope.Equipo_2,
+                        goles_uno: 0,
+                        goles_dos: 0,
+                        fecha: $scope.Fecha
+                    });
+                    $scope.Equipo_1 = "";
+                    $scope.Equipo_2 = "";
+                    $scope.MasQueNumero = false;
+                }
+              }
             $scope.temporaNombreE1 = "";
             $scope.temporaNombreE2 = "";
             $scope.EditPartido = function(equipo_uno, equipo_dos,goles_uno,goles_dos,fecha) {
@@ -538,26 +570,33 @@ angular.module('app.controllers', [])
 
             };
             $scope.AceptarEdicion = function() {
-                for (var i = 0; i < $scope.partidosJugadosFilter.length; i++) {
-                    if ($scope.partidosJugadosFilter[i].equipo_uno === $scope.temporaNombreE1 && $scope.partidosJugadosFilter[i].equipo_dos === $scope.temporaNombreE2) {
-                        $scope.partidosJugadosFilter[i].equipo_uno = $scope.NuevoEquipo1;
-                        $scope.partidosJugadosFilter[i].equipo_dos = $scope.NuevoEquipo2;
-                        $scope.partidosJugadosFilter[i].goles_uno = parseInt($scope.NuevoEquipoGoles1);
-                        $scope.partidosJugadosFilter[i].goles_dos = parseInt($scope.NuevoEquipoGoles2);
-                        $scope.partidosJugadosFilter[i].fecha = $scope.NuevaFecha;
+                if (parseInt($scope.NuevoEquipo1) > 0 && parseInt($scope.NuevoEquipo2) > 0) {
+                    $scope.NuevoEquipo1 = "";
+                    $scope.NuevoEquipo2 = "";
+                    $scope.MasQueNumero = true;
+                } else {
+                    for (var i = 0; i < $scope.partidosJugadosFilter.length; i++) {
+                        if ($scope.partidosJugadosFilter[i].equipo_uno === $scope.temporaNombreE1 && $scope.partidosJugadosFilter[i].equipo_dos === $scope.temporaNombreE2) {
+                            $scope.partidosJugadosFilter[i].equipo_uno = $scope.NuevoEquipo1;
+                            $scope.partidosJugadosFilter[i].equipo_dos = $scope.NuevoEquipo2;
+                            $scope.partidosJugadosFilter[i].goles_uno = parseInt($scope.NuevoEquipoGoles1);
+                            $scope.partidosJugadosFilter[i].goles_dos = parseInt($scope.NuevoEquipoGoles2);
+                            $scope.partidosJugadosFilter[i].fecha = $scope.NuevaFecha;
+                        }
+
                     }
-                    
+                    $scope.NuevoPartido = true;
+                    $scope.EditarBool = false;
+                    $scope.NuevoEquipo1 = "";
+                    $scope.NuevoEquipo2 = "";
+                    $scope.temporaNombreE1 = "";
+                    $scope.temporaNombreE2 = "";
+                    $scope.NuevoEquipoGoles1 = "";
+                    $scope.NuevoEquipoGoles2 = "";
+                    $scope.NuevaFecha = new Date();
+                    $scope.MasQueNumero = false;
                 }
-                $scope.NuevoPartido = true;
-                $scope.EditarBool = false;
-                $scope.NuevoEquipo1 = "";
-                $scope.NuevoEquipo2 = "";
-                $scope.temporaNombreE1 = "";
-                $scope.temporaNombreE2 = "";
-                $scope.NuevoEquipoGoles1 = "";
-                $scope.NuevoEquipoGoles2 = "";
-                $scope.NuevaFecha = new Date();
-            };
+              };
             $scope.DeletePartido=function(equipo_uno, equipo_dos) {
                 for (var i = 0; i < $scope.partidosJugadosFilter.length; i++) {
                     if ($scope.partidosJugadosFilter[i].equipo_uno === equipo_uno && $scope.partidosJugadosFilter[i].equipo_dos === equipo_dos) {
