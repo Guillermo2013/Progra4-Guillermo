@@ -12,7 +12,7 @@ namespace sportliga.Domain.Entities
         public virtual int PartidosGanados { get; set; }
         public virtual int PartidosPerdidos { get; set; }
         public virtual int Goles { get; set; }
-        public bool IsArchived { get; set; }
-        public virtual IEnumerable<Partidos> PartidosEquipos { get; set; }
+        public virtual bool IsArchived { get; set; }
+        public virtual IEnumerable<Partidos> PartidosEquipos{ get; set; }
     }
 }

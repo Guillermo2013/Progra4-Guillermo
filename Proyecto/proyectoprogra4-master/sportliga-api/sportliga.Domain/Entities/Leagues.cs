@@ -12,7 +12,7 @@ namespace sportliga.Domain.Entities
         public virtual DateTime FechaDeInicio{ get; set; }
         public virtual DateTime FechaDeFinalizacion { get; set; }
         public virtual int CantidadEquipos { get; set; }
-        public virtual bool Suscripo { get; set; }
+        public virtual bool Suscrito { get; set; }
         public virtual DateTime FechaDeIncipcion { get; set; }
         public virtual IEnumerable< Equipos> EquiposLeague { get; set; }
     }
