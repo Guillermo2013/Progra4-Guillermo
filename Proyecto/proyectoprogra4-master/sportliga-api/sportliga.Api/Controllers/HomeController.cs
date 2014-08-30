@@ -12,5 +12,9 @@ namespace sportliga.api.Controllers
         {
             return View();
         }
+        public ActionResult Prueba()
+        {
+            return View();
+        }
     }
 }
