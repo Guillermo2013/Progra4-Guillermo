@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using DomainDrivenDatabaseDeployer;
@@ -17,6 +18,7 @@ namespace sportliga.DataBaseDeployer
         public UserSeeder (ISession session)
         {
             _session = session;
+            
         }
 
         public void Seed()
@@ -25,16 +27,18 @@ namespace sportliga.DataBaseDeployer
             {
                 Email = "test@test.com",
                 Name = "Test Name",
-                Password = "password"
+                Password = Encryptor.Encrypt("password")
             });
             _session.Save(new CuentaDeUsuario
             {
                 Email = "test2@test.com",
                 Name = "Test2 Name",
-                Password = "password2"
+                Password = Encryptor.Encrypt("Guillermo")
             });
-           
-           
+
+          
         }
+
+        
     }
 }
