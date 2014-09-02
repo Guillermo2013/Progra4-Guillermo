@@ -56,4 +56,5 @@ namespace sportliga.DataBaseDeployer
             Thread.Sleep(2000);
          }
      }
+
  }

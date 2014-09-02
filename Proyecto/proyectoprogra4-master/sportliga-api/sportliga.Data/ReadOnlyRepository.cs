@@ -62,6 +62,7 @@ namespace sportliga.Data
             var session = _session;
             return session.Query<T>().Where(expression);
         }
+      
     }
     
     
