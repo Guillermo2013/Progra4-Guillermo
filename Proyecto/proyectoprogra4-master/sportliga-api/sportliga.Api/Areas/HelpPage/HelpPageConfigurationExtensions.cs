@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Description;
 using sportliga.api.Areas.HelpPage.Models;
+using sportliga.api.Areas.HelpPage.SampleGeneration;
 
 namespace sportliga.api.Areas.HelpPage
 {

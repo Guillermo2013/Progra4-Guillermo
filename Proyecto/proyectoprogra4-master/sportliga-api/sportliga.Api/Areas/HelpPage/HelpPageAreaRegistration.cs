@@ -1,5 +1,6 @@
 using System.Web.Http;
 using System.Web.Mvc;
+using sportliga.api.Areas.HelpPage.App_Start;
 
 namespace sportliga.api.Areas.HelpPage
 {

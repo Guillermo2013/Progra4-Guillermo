@@ -1,5 +1,4 @@
 ﻿using System.Configuration;
-
 namespace sportliga.Data
 {
     public class ConnectionStrings
