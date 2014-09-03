@@ -7,7 +7,6 @@ using AcklenAvenue.Data;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Conventions.Helpers;
-using sportliga.Domain;
 using sportliga.Domain.Entities;
 
 

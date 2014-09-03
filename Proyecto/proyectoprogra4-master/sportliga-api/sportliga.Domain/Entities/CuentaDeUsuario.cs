@@ -11,5 +11,9 @@ namespace sportliga.Domain.Entities
         public virtual string Password { get; set; }
         public virtual bool IsArchived { get; set; }
         public virtual IEnumerable<Leagues> Leagues { get; set; }
+        public virtual bool CheckPassword(string password)
+        {
+            return true;
+        }
     }
 }
