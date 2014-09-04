@@ -6,6 +6,11 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Autofac;
+using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
+using sportliga.api.Controllers;
+using sportliga.Api.Controllers;
 
 namespace sportliga.api
 {
@@ -17,11 +22,34 @@ namespace sportliga.api
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            //WebApiConfig.Register(GlobalConfiguration.Configuration);
+            //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            //RouteConfig.RegisterRoutes(Ro`uteTable.Routes);
+            //BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            BuildContainer();
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //GlobalConfiguration.Configuration.MessageHandlers.Add(new CorsHandler()); 
+        }
+
+        public IContainer BuildContainer()
+        {
+            var containerBuilder = new ContainerBuilder();
+            return
+                new Bootstrapper(containerBuilder).WithTask(new ConfigureDependencies(containerBuilder))
+                                                  .WithTask(new ConfigureAutomapper())
+                                                  .WithExampleMvcController<HomeController>()
+                                                  .WithExampleWebApiController<LoginController>()
+                                                  .AndAfterContainerIsBuilt(
+                                                      container =>
+                                                      {
+                                                          GlobalConfiguration.Configuration.DependencyResolver =
+                                                              new AutofacWebApiDependencyResolver(container);
+                                                          DependencyResolver.SetResolver(
+                                                              new AutofacDependencyResolver(container));
+                                                      }).Run();
         }
     }
-}

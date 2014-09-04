@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Web;
 using System.Web.Http;
 using AcklenAvenue.Data.NHibernate;
+using AttributeRouting.Web.Mvc;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using sportliga.Api.Model;
+using sportliga.Api.Models;
 using sportliga.Data;
 using sportliga.Domain.Entities;
 using sportliga.Domain.Services;
 
-namespace sportliga.api.Controllers
+
+namespace sportliga.Api.Controllers
 {
     public class LoginController : ApiController
     {
-        IReadOnlyRepository _readOnlyRepository;
+        readonly IReadOnlyRepository _readOnlyRepository;
 
-        public LoginController()
-        {
-
-        }
 
         public LoginController(IReadOnlyRepository readOnlyRepository)
         {
@@ -28,45 +25,19 @@ namespace sportliga.api.Controllers
             _readOnlyRepository = readOnlyRepository;
         }
 
-        public AuthModel Post([FromBody]AccountLoginModel model)
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("login")]
+        public AuthModel Login([FromBody] AccountLoginModel model)
         {
-
-            string connectionString = ConnectionStrings.Get();
-
-
-
-            MsSqlConfiguration databaseConfiguration =
-                MsSqlConfiguration.MsSql2008.ShowSql().ConnectionString(x => x.Is(connectionString));
-
-
-            ISessionFactory sessionFactory = new SessionFactoryBuilder(new MappingScheme(), databaseConfiguration)
-                .Build();
-            _readOnlyRepository = new ReadOnlyRepository(sessionFactory.OpenSession());
-
-            var user = _readOnlyRepository.FirstOrDefault<Account>(x => x.Email == model.Email);
-            if (user != null)
-            {
-                if (user.CheckPassword(model.Password))
-                {
-                    var authModel = new AuthModel();
-                    authModel.Token = "SuperHash";
-                    return authModel;
-                }
+            var user = _readOnlyRepository.FirstOrDefault<CuentaDeUsuario>(x => x.Email == model.Email);
+            if (user == null) throw new HttpException((int)HttpStatusCode.NotFound, "User doesn't exist.");
+            if (!user.CheckPassword(model.Password))
                 throw new HttpException((int)HttpStatusCode.Unauthorized, "Password doesn't match.");
-            }
-            throw new HttpException((int)HttpStatusCode.NotFound, "User doesn't exist.");
+            var authModel = new AuthModel { Token = "SuperHash" };
+            return authModel;
         }
 
-    }
 
-    public class AuthModel
-    {
-        public string Token { get; set; }
-    }
-
-    public class AccountLoginModel
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }
     }
 }
