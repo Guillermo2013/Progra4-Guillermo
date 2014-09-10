@@ -26,53 +26,45 @@ angular.module('app.controllers', [])
     ])
 
     // Path: /login
-    .controller('LoginCtrl', [
-        '$scope', '$location', '$window', function($scope, $location, $window) {
-            $scope.$root.title = 'AngularJS SPA | Sign In';
-            // TODO: Authorize a user
+     .controller('LoginCtrl', ['$scope', '$location', '$window', 'Account', function ($scope, $location, $window, Account) {
+         $scope.$root.title = 'AngularJS SPA | Sign In';
+         // TODO: Authorize a user
+         $scope.user = {
 
-            $scope.login = function() {
-                $location.path('/register');
-                return true;
+         };
 
-            };
-            $scope.$on('$viewContentLoaded', function() {
-                $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
-            });
+         $scope.login = function () {
+             Account.login($scope.user, function (response) {
 
-            $scope.register = function() {
-                $location.path('/register');
-                return false;
-            };
-            $scope.ShowMessage = false;
-            $scope.Cuentas = function(userName, password) {
-                $scope.user = userName;
-                $scope.password = password;
+             }, function (error) {
 
-                if ($scope.user === "administrador" && $scope.password === "guillermo") {
-                    $location.path('/profile');
-                } else if ($scope.user === "cliente" && $scope.password === "guillermo") {
-                    $location.path('/Cliente');
-                } else {
-                    $scope.ShowMessage = true;
-                }
-            };
-
-
-        }
-    ])
+             });
+         };
+         $scope.$on('$viewContentLoaded', function () {
+             $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
+         });
+     }])
+    
 
     // Path: /register
-    .controller('RegisterCtrl', [
-        '$scope', '$location', '$window', function($scope, $location, $window) {
+    controller('RegisterCtrl', ['$scope', '$location', '$window', 'Account', function ($scope, $location, $window, Account)  {
             $scope.$root.title = 'AngularJS SPA | Register';
             // TODO: Register a new user
-            $scope.login = function() {
-                $location.path('/login');
-                return false;
-            };
-        }
-    ])
+      $scope.user = {
+       
+      };
+            
+      $scope.register = function () {
+      Account.register($scope.user, function (response) {
+          $location.path('/login');
+          }, function (error) {
+            alert('Error');
+       });
+      };
+     $scope.$on('$viewContentLoaded', function () {
+         $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
+      });
+  }])
 
     // Path: /forgot-password
     .controller('ForgotPasswordCtrl', [

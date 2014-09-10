@@ -65,6 +65,9 @@
     <Compile Include="WriteOnlyRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\sportliga.DataBaseDeployer\App.config">
+      <Link>App.config</Link>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -40,16 +40,17 @@ namespace sportliga.api
             var containerBuilder = new ContainerBuilder();
             return
                 new Bootstrapper(containerBuilder).WithTask(new ConfigureDependencies(containerBuilder))
-                                                  .WithTask(new ConfigureAutomapper())
-                                                  .WithExampleMvcController<HomeController>()
-                                                  .WithExampleWebApiController<LoginController>()
-                                                  .AndAfterContainerIsBuilt(
-                                                      container =>
-                                                      {
-                                                          GlobalConfiguration.Configuration.DependencyResolver =
-                                                              new AutofacWebApiDependencyResolver(container);
-                                                          DependencyResolver.SetResolver(
-                                                              new AutofacDependencyResolver(container));
-                                                      }).Run();
+                    .WithTask(new ConfigureAutomapper())
+                    .WithExampleMvcController<HomeController>()
+                    .WithExampleWebApiController<AccountController>()
+                    .AndAfterContainerIsBuilt(
+                        container =>
+                        {
+                            GlobalConfiguration.Configuration.DependencyResolver =
+                                new AutofacWebApiDependencyResolver(container);
+                            DependencyResolver.SetResolver(
+                                new AutofacDependencyResolver(container));
+                        }).Run();
         }
     }
+}

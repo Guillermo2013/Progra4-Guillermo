@@ -1,5 +1,9 @@
 
 
+using AutoMapper;
+using sportliga.Api.Controllers;
+using sportliga.Domain.Entities;
+
 namespace sportliga.api
 {
     public class ConfigureAutomapper : IBootstrapperTask
@@ -10,7 +14,7 @@ namespace sportliga.api
         {
             //automappings go here
             //Ex: Mapper.CreateMap<SomeType, SomeOtherType>().ReverseMap();
-            
+            Mapper.CreateMap<AccountRegisterModel, CuentaDeUsuario>().ReverseMap();
         }
 
         #endregion

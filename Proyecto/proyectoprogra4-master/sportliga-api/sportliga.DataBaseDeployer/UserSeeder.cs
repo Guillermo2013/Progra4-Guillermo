@@ -28,18 +28,18 @@ namespace sportliga.DataBaseDeployer
 
         public void Seed()
         {
-            _session.Save( new CuentaDeUsuario
+            var CuentaDeUsuario = new CuentaDeUsuario
             {
                 Email = "test@test.com",
                 Name = "Test Name",
-                Password = Encryptor.Encrypt("password")
-            });
-          
-            if (validar("password"))
-            {
-                string aps = "las contraseña se a verificado";
-                Console.Write(aps);
-            }
+                Password = "password"
+            };
+
+
+
+            _session.Save(CuentaDeUsuario);
+           if(validar("password"))
+               Console.WriteLine("Contraseña Verificada");
         }
 
         public bool validar(String contraseña)

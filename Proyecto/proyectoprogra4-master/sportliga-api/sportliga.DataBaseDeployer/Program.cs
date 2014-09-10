@@ -26,7 +26,7 @@ namespace sportliga.DataBaseDeployer
             MsSqlConfiguration databaseConfiguration =
                 MsSqlConfiguration.MsSql2012.ShowSql().ConnectionString(x => x.Is(connectionString));
 
-            DomainDrivenDatabaseDeployer.DatabaseDeployer dd = null;
+  DomainDrivenDatabaseDeployer.DatabaseDeployer dd = null;
             ISessionFactory sessionFactory = new SessionFactoryBuilder(new MappingScheme(), databaseConfiguration)
                 .Build(cfg => { dd = new DomainDrivenDatabaseDeployer.DatabaseDeployer(cfg); });
 
