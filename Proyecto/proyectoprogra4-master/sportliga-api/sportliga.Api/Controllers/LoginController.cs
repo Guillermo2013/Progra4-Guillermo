@@ -1,25 +1,14 @@
-﻿﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Net;
+﻿using System.Net;
 using System.Web;
 using System.Web.Http;
 using AcklenAvenue.Data.NHibernate;
 using AttributeRouting.Web.Mvc;
 using AutoMapper;
-using FluentNHibernate.Cfg.Db;
-using NHibernate;
-using sportliga.Data;
 using sportliga.Domain.Entities;
+using sportliga.Data;
 using sportliga.Domain.Services;
 using sportliga.Api.Model;
 using sportliga.Api.Models;
- 
-
 
 
 namespace sportliga.Api.Controllers
