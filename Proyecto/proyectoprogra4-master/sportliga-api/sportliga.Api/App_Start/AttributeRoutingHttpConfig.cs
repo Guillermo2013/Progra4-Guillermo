@@ -1,8 +1,7 @@
 using System.Web.Http;
 using AttributeRouting.Web.Http.WebHost;
-using sportliga.api;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(AttributeRoutingHttpConfig), "Start")]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(sportliga.api.AttributeRoutingHttpConfig), "Start")]
 
 namespace sportliga.api 
 {

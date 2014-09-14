@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sportliga.Data", "sportliga.Data\sportliga.Data.csproj", "{CA716A6E-FCAB-481C-9EDE-73EB091D5AE8}"
 EndProject
@@ -10,6 +10,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sportliga.DataBaseDeployer", "sportliga.DataBaseDeployer\sportliga.DataBaseDeployer.csproj", "{4FBF03AD-7E9E-4379-9E32-1B268B7D52FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sportliga.api", "sportliga.api\sportliga.api.csproj", "{44E2B987-5754-444B-AC5D-289225956A17}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CA716A6E-FCAB-481C-9EDE-73EB091D5AE8} = {CA716A6E-FCAB-481C-9EDE-73EB091D5AE8}
+		{619EAAE1-1EC9-4F86-BB94-A96ACD857630} = {619EAAE1-1EC9-4F86-BB94-A96ACD857630}
+		{AC550CF2-C1E8-4A04-A8DC-AF3F305BC4F1} = {AC550CF2-C1E8-4A04-A8DC-AF3F305BC4F1}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sportliga.Presentation", "..\sportliga\sportliga.Presentation\sportliga.Presentation.csproj", "{AC550CF2-C1E8-4A04-A8DC-AF3F305BC4F1}"
 EndProject

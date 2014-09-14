@@ -4,6 +4,7 @@ using AutoMapper;
 using sportliga.Data;
 using sportliga.Domain.Services;
 
+
 namespace sportliga.api
 {
     public class ConfigureDependencies : IBootstrapperTask
@@ -19,8 +20,8 @@ namespace sportliga.api
 
         public void Run()
         {
-            Assembly data = Assembly.Load("PrediLiga.Data");
-            Assembly domain = Assembly.Load("PrediLiga.Domain");
+            Assembly data = Assembly.Load("sportLiga.Data");
+            Assembly domain = Assembly.Load("sportLiga.Domain");
 
             _containerBuilder
                 .RegisterAssemblyTypes(data, domain)

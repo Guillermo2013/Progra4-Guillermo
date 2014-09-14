@@ -32,7 +32,7 @@ namespace sportliga.Api.Controllers
         [POST("register")]
         public CuentaDeUsuario Register([FromBody] AccountRegisterModel model)
         {
-            var newUser = _mappingEngine.Map<AccountRegisterModel, CuentaDeUsuario>(model);
+            var newUser = _mappingEngine.Map<AccountRegisterModel,sportliga.Domain.Entities.CuentaDeUsuario>(model);
             var createdUser = _writeOnlyRepository.Create(newUser);
             var x = Request;
             return createdUser;

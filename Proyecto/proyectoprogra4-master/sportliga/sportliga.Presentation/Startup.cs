@@ -4,12 +4,13 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+
+
 [assembly: Microsoft.Owin.OwinStartup(typeof(App.sportliga.Presentation.Startup))]
 
 namespace App.sportliga.Presentation
 {
     using Owin;
-
     public partial class Startup
     {
         public void Configuration(IAppBuilder app)
