@@ -8,11 +8,11 @@ namespace sportliga.api
 {
     public class ConfigureDatabase : IBootstrapperTask
     {
-        readonly ContainerBuilder container;
+        readonly ContainerBuilder _container;
 
         public ConfigureDatabase(ContainerBuilder containerBuilder)
         {
-            container = containerBuilder;
+            _container = containerBuilder;
         }
 
         #region IBootstrapperTask Members
@@ -22,7 +22,7 @@ namespace sportliga.api
             MsSqlConfiguration databaseConfiguration = MsSqlConfiguration.MsSql2008.ShowSql().
                 ConnectionString(x => x.Is(ConnectionStrings.Get()));
 
-            container.Register(c => { return c.Resolve<ISessionFactory>().OpenSession(); }).As
+            _container.Register(c => { return c.Resolve<ISessionFactory>().OpenSession(); }).As
                 <ISession>()
                 .InstancePerLifetimeScope()
                 .OnActivating(c =>
@@ -40,7 +40,7 @@ namespace sportliga.api
                                    c.Dispose();
                                });
 
-            container.Register(c =>
+            _container.Register(c =>
                                new SessionFactoryBuilder(new MappingScheme(), databaseConfiguration).Build())
                 .SingleInstance()
                 .As<ISessionFactory>();
